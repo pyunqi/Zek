@@ -2,6 +2,8 @@ var express     =    require("express");
 var multer      =    require('multer');
 var app         =    express();
 var done        =    false;
+var fs = require('fs');
+var img = fs.readFileSync('./uploads/default_avatar');
 
 app.use('/img', express.static(__dirname + "/uploads"));
 app.use(function(req, res, next) { //跨域
@@ -9,6 +11,11 @@ app.use(function(req, res, next) { //跨域
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST");
   next();
+});
+
+app.get('/*',function(req, res, next){
+  res.status(404).writeHead(200, {'Content-Type': 'image/gif' });
+  res.status(404).end(img, 'binary');
 });
 
 app.use(multer({ dest: './uploads/',
