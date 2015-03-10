@@ -3,9 +3,9 @@ var multer      =    require('multer');
 var fs          =    require('fs');
 var app         =    express();
 var done        =    false;
-var avatarFolder = './uploads/';
+var avatarFolder = '/home/Zek/base64-avatar-server/uploads/'; //./uploads/';
 
-app.use('/img', express.static(__dirname + '/uploads'));
+app.use('/avatarimg', express.static(__dirname + '/uploads'));
 app.use(function(req, res, next) { //跨域
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
